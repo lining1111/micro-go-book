@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/bootstrap"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-app/setup"
+	"micro-go-book/ch13-seckill/pkg/bootstrap"
+	"micro-go-book/ch13-seckill/sk-app/setup"
 )
 
 func main() {

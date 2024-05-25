@@ -2,13 +2,13 @@ package service
 
 import (
 	"fmt"
-	conf "github.com/longjoy/micro-go-book/ch13-seckill/pkg/config"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-app/config"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-app/model"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-app/service/srv_err"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-app/service/srv_limit"
 	"log"
 	"math/rand"
+	conf "micro-go-book/ch13-seckill/pkg/config"
+	"micro-go-book/ch13-seckill/sk-app/config"
+	"micro-go-book/ch13-seckill/sk-app/model"
+	"micro-go-book/ch13-seckill/sk-app/service/srv_err"
+	"micro-go-book/ch13-seckill/sk-app/service/srv_limit"
 	"time"
 )
 

@@ -2,8 +2,8 @@ package transport
 
 import (
 	"context"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pb"
-	"github.com/longjoy/micro-go-book/ch13-seckill/user-service/endpoint"
+	"micro-go-book/ch13-seckill/pb"
+	"micro-go-book/ch13-seckill/user-service/endpoint"
 )
 
 func EncodeGRPCUserRequest(_ context.Context, r interface{}) (interface{}, error) {
@@ -34,7 +34,7 @@ func EncodeGRPCUserResponse(_ context.Context, r interface{}) (interface{}, erro
 
 	return &pb.UserResponse{
 		Result: bool(resp.Result),
-		UserId:resp.UserId,
+		UserId: resp.UserId,
 		Err:    "",
 	}, nil
 }

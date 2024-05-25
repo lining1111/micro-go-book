@@ -4,9 +4,9 @@ import (
 	"context"
 	"flag"
 	"github.com/go-kit/kit/log"
-	service "github.com/longjoy/micro-go-book/ch7-rpc/go-kit/string-service"
-	"github.com/longjoy/micro-go-book/ch7-rpc/pb"
 	"google.golang.org/grpc"
+	service "micro-go-book/ch7-rpc/go-kit/string-service"
+	"micro-go-book/ch7-rpc/pb"
 	"net"
 	"os"
 )

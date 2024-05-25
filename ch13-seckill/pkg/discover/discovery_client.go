@@ -3,8 +3,8 @@ package discover
 import (
 	"github.com/go-kit/kit/sd/consul"
 	"github.com/hashicorp/consul/api"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/common"
 	"log"
+	"micro-go-book/ch13-seckill/pkg/common"
 	"sync"
 )
 

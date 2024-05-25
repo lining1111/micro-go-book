@@ -2,10 +2,10 @@ package client
 
 import (
 	"context"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pb"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/discover"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/loadbalance"
 	"github.com/opentracing/opentracing-go"
+	"micro-go-book/ch13-seckill/pb"
+	"micro-go-book/ch13-seckill/pkg/discover"
+	"micro-go-book/ch13-seckill/pkg/loadbalance"
 )
 
 type OAuthClient interface {
@@ -37,10 +37,10 @@ func NewOAuthClient(serviceName string, lb loadbalance.LoadBalance, tracer opent
 
 	return &OAuthClientImpl{
 		manager: &DefaultClientManager{
-			serviceName: serviceName,
-			loadBalance: lb,
-			discoveryClient:discover.ConsulService,
-			logger:discover.Logger,
+			serviceName:     serviceName,
+			loadBalance:     lb,
+			discoveryClient: discover.ConsulService,
+			logger:          discover.Logger,
 		},
 		serviceName: serviceName,
 		loadBalance: lb,

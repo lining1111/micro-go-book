@@ -2,10 +2,10 @@ package setup
 
 import (
 	"github.com/go-redis/redis"
-	conf "github.com/longjoy/micro-go-book/ch13-seckill/pkg/config"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-app/service/srv_redis"
 	"github.com/unknwon/com"
 	"log"
+	conf "micro-go-book/ch13-seckill/pkg/config"
+	"micro-go-book/ch13-seckill/sk-app/service/srv_redis"
 	"time"
 )
 

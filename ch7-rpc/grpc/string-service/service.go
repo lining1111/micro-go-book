@@ -3,7 +3,7 @@ package string_service
 import (
 	"context"
 	"errors"
-	"github.com/longjoy/micro-go-book/ch7-rpc/pb"
+	"micro-go-book/ch7-rpc/pb"
 	"strings"
 )
 

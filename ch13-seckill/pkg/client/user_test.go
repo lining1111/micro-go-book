@@ -3,10 +3,10 @@ package client
 import (
 	"context"
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pb"
 	"github.com/opentracing/opentracing-go"
 	zipkin "github.com/openzipkin-contrib/zipkin-go-opentracing"
 	"log"
+	"micro-go-book/ch13-seckill/pb"
 	"testing"
 )
 

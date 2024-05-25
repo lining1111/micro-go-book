@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"github.com/go-kit/kit/transport/grpc"
-	"github.com/longjoy/micro-go-book/ch12-trace/zipkin-kit/client"
-	"github.com/longjoy/micro-go-book/ch12-trace/zipkin-kit/pb"
-	"github.com/longjoy/micro-go-book/ch12-trace/zipkin-kit/string-service/endpoint"
+	"micro-go-book/ch12-trace/zipkin-kit/client"
+	"micro-go-book/ch12-trace/zipkin-kit/pb"
+	"micro-go-book/ch12-trace/zipkin-kit/string-service/endpoint"
 )
 
 type grpcServer struct {

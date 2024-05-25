@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/go-kit/kit/endpoint"
-	"github.com/longjoy/micro-go-book/ch13-seckill/user-service/service"
+	"micro-go-book/ch13-seckill/user-service/service"
 	"reflect"
 )
 
@@ -65,7 +65,7 @@ func MakeUserEndpoint(svc service.Service) endpoint.Endpoint {
 		if calError != nil {
 			return UserResponse{Result: false, Error: calError}, nil
 		}
-		return UserResponse{Result: true, UserId:userId, Error: calError}, nil
+		return UserResponse{Result: true, UserId: userId, Error: calError}, nil
 	}
 }
 

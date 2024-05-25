@@ -1,3 +1,4 @@
+//go:build go1.7
 // +build go1.7
 
 package main
@@ -5,7 +6,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch12-trace/zipkin-go/string-services/svc1"
+	"micro-go-book/ch12-trace/zipkin-go/string-services/svc1"
 	"os"
 
 	"github.com/opentracing/opentracing-go"

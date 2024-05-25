@@ -2,10 +2,10 @@ package main
 
 import (
 	"flag"
-	string_service "github.com/longjoy/micro-go-book/ch7-rpc/grpc/string-service"
-	"github.com/longjoy/micro-go-book/ch7-rpc/pb"
 	"github.com/prometheus/common/log"
 	"google.golang.org/grpc"
+	string_service "micro-go-book/ch7-rpc/grpc/string-service"
+	"micro-go-book/ch7-rpc/pb"
 	"net"
 )
 

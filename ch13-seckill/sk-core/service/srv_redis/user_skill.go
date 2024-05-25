@@ -3,11 +3,11 @@ package srv_redis
 import (
 	"crypto/md5"
 	"fmt"
-	conf "github.com/longjoy/micro-go-book/ch13-seckill/pkg/config"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-core/config"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-core/service/srv_err"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-core/service/srv_user"
 	"log"
+	conf "micro-go-book/ch13-seckill/pkg/config"
+	"micro-go-book/ch13-seckill/sk-core/config"
+	"micro-go-book/ch13-seckill/sk-core/service/srv_err"
+	"micro-go-book/ch13-seckill/sk-core/service/srv_user"
 	"time"
 )
 

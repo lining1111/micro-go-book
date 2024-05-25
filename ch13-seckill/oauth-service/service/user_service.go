@@ -3,16 +3,16 @@ package service
 import (
 	"context"
 	"errors"
-	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/model"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pb"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/client"
+	"micro-go-book/ch13-seckill/oauth-service/model"
+	"micro-go-book/ch13-seckill/pb"
+	"micro-go-book/ch13-seckill/pkg/client"
 )
 
 var (
 	InvalidAuthentication = errors.New("invalid auth")
-	InvalidUserInfo = errors.New("invalid user info")
-
+	InvalidUserInfo       = errors.New("invalid user info")
 )
+
 // Service Define a service interface
 type UserDetailsService interface {
 	// Get UserDetails By username
@@ -21,27 +21,24 @@ type UserDetailsService interface {
 
 //UserService implement Service interface
 type RemoteUserService struct {
-
 	userClient client.UserClient
-
-
 }
 
 func (service *RemoteUserService) GetUserDetailByUsername(ctx context.Context, username, password string) (*model.UserDetails, error) {
 
 	response, err := service.userClient.CheckUser(ctx, nil, &pb.UserRequest{
-		Username:username,
-		Password:password,
+		Username: username,
+		Password: password,
 	})
 
-	if err == nil{
+	if err == nil {
 		if response.UserId != 0 {
 			return &model.UserDetails{
-				UserId:response.UserId,
-				Username:username,
-				Password:password,
+				UserId:   response.UserId,
+				Username: username,
+				Password: password,
 			}, nil
-		}else {
+		} else {
 			return nil, InvalidUserInfo
 		}
 	}
@@ -53,7 +50,7 @@ func NewRemoteUserDetailService() *RemoteUserService {
 
 	userClient, _ := client.NewUserClient("user", nil, nil)
 	return &RemoteUserService{
-		userClient:userClient,
+		userClient: userClient,
 	}
 }
 

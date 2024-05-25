@@ -5,20 +5,20 @@ import (
 	"flag"
 	"fmt"
 	kitzipkin "github.com/go-kit/kit/tracing/zipkin"
-	localconfig "github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/config"
-	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/endpoint"
-	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/plugins"
-	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/service"
-	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/transport"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pb"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/bootstrap"
-	conf "github.com/longjoy/micro-go-book/ch13-seckill/pkg/config"
-	register "github.com/longjoy/micro-go-book/ch13-seckill/pkg/discover"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/mysql"
 	"github.com/openzipkin/zipkin-go/propagation/b3"
 	"golang.org/x/time/rate"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
+	localconfig "micro-go-book/ch13-seckill/oauth-service/config"
+	"micro-go-book/ch13-seckill/oauth-service/endpoint"
+	"micro-go-book/ch13-seckill/oauth-service/plugins"
+	"micro-go-book/ch13-seckill/oauth-service/service"
+	"micro-go-book/ch13-seckill/oauth-service/transport"
+	"micro-go-book/ch13-seckill/pb"
+	"micro-go-book/ch13-seckill/pkg/bootstrap"
+	conf "micro-go-book/ch13-seckill/pkg/config"
+	register "micro-go-book/ch13-seckill/pkg/discover"
+	"micro-go-book/ch13-seckill/pkg/mysql"
 	"net"
 	"net/http"
 	"os"
@@ -59,9 +59,8 @@ func main() {
 	srv = service.NewCommentService()
 
 	tokenGranter = service.NewComposeTokenGranter(map[string]service.TokenGranter{
-		"password": service.NewUsernamePasswordTokenGranter("password", userDetailsService, tokenService),
-		"refresh_token": service.NewRefreshGranter("refresh_token", userDetailsService,  tokenService),
-
+		"password":      service.NewUsernamePasswordTokenGranter("password", userDetailsService, tokenService),
+		"refresh_token": service.NewRefreshGranter("refresh_token", userDetailsService, tokenService),
 	})
 
 	tokenEndpoint := endpoint.MakeTokenEndpoint(tokenGranter, clientDetailsService)
@@ -81,16 +80,15 @@ func main() {
 	gRPCCheckTokenEndpoint = kitzipkin.TraceEndpoint(localconfig.ZipkinTracer, "grpc-check-endpoint")(gRPCCheckTokenEndpoint)
 	//tokenEndpoint = plugins.ClientAuthorizationMiddleware(clientDetailsService)(checkTokenEndpoint)
 
-
 	//创建健康检查的Endpoint
 	healthEndpoint := endpoint.MakeHealthCheckEndpoint(srv)
 	healthEndpoint = kitzipkin.TraceEndpoint(localconfig.ZipkinTracer, "health-endpoint")(healthEndpoint)
 
 	endpts := endpoint.OAuth2Endpoints{
-		TokenEndpoint:       tokenEndpoint,
-		CheckTokenEndpoint:  checkTokenEndpoint,
-		HealthCheckEndpoint: healthEndpoint,
-		GRPCCheckTokenEndpoint:gRPCCheckTokenEndpoint,
+		TokenEndpoint:          tokenEndpoint,
+		CheckTokenEndpoint:     checkTokenEndpoint,
+		HealthCheckEndpoint:    healthEndpoint,
+		GRPCCheckTokenEndpoint: gRPCCheckTokenEndpoint,
 	}
 
 	//创建http.Handler

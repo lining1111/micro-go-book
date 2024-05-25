@@ -3,15 +3,14 @@ package endpoint
 import (
 	"context"
 	"github.com/go-kit/kit/endpoint"
-	"github.com/longjoy/micro-go-book/ch10-resiliency/use-string-service/service"
+	"micro-go-book/ch10-resiliency/use-string-service/service"
 )
 
 // CalculateEndpoint define endpoint
 type UseStringEndpoints struct {
-	UseStringEndpoint      endpoint.Endpoint
+	UseStringEndpoint   endpoint.Endpoint
 	HealthCheckEndpoint endpoint.Endpoint
 }
-
 
 // StringRequest define request struct
 type UseStringRequest struct {
@@ -23,7 +22,7 @@ type UseStringRequest struct {
 // StringResponse define response struct
 type UseStringResponse struct {
 	Result string `json:"result"`
-	Error  string  `json:"error"`
+	Error  string `json:"error"`
 }
 
 //// MakeStringEndpoint make endpoint
@@ -66,7 +65,6 @@ func MakeUseStringEndpoint(svc service.Service) endpoint.Endpoint {
 		return UseStringResponse{Result: res}, opError
 	}
 }
-
 
 // HealthRequest 健康检查请求结构
 type HealthRequest struct{}

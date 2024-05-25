@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pb"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/client"
+	"micro-go-book/ch13-seckill/pb"
+	"micro-go-book/ch13-seckill/pkg/client"
 	"testing"
 )
 

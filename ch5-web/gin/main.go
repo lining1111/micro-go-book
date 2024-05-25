@@ -37,6 +37,12 @@ func GlobalMiddleware(c *gin.Context) {
 	c.Header("Access-Control-Allow-Credentials", "true")
 	c.Next()
 }
+
+//这个函数是原书没有的，自己写的有待优化 TODO
+func check(token string) bool {
+	return true
+}
+
 func AuthMiddleWare() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.Request.Header.Get("Authorization")

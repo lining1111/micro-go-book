@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"github.com/afex/hystrix-go/hystrix"
 	"github.com/hashicorp/consul/api"
-	"github.com/longjoy/micro-go-book/common/discover"
-	"github.com/longjoy/micro-go-book/common/loadbalance"
 	"log"
+	"micro-go-book/common/discover"
+	"micro-go-book/common/loadbalance"
 	"net/http"
 	"net/http/httputil"
 	"strings"
@@ -16,7 +16,6 @@ import (
 
 var (
 	ErrNoInstances = errors.New("query service instance error")
-
 )
 
 type HystrixHandler struct {
@@ -26,18 +25,18 @@ type HystrixHandler struct {
 	hystrixsMutex *sync.Mutex
 
 	discoveryClient discover.DiscoveryClient
-	loadbalance loadbalance.LoadBalance
-	logger       *log.Logger
+	loadbalance     loadbalance.LoadBalance
+	logger          *log.Logger
 }
 
 func NewHystrixHandler(discoveryClient discover.DiscoveryClient, loadbalance loadbalance.LoadBalance, logger *log.Logger) *HystrixHandler {
 
 	return &HystrixHandler{
 		discoveryClient: discoveryClient,
-		logger:        	logger,
-		hystrixs:      	make(map[string]bool),
-		loadbalance:	loadbalance,
-		hystrixsMutex: 	&sync.Mutex{},
+		logger:          logger,
+		hystrixs:        make(map[string]bool),
+		loadbalance:     loadbalance,
+		hystrixsMutex:   &sync.Mutex{},
 	}
 
 }
@@ -81,7 +80,7 @@ func (hystrixHandler *HystrixHandler) ServeHTTP(rw http.ResponseWriter, req *htt
 		// 使用负载均衡算法选取实例
 		selectInstance, err := hystrixHandler.loadbalance.SelectService(instanceList)
 
-		if err != nil{
+		if err != nil {
 			return ErrNoInstances
 		}
 

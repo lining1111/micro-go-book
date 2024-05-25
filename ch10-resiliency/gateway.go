@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 	kitlog "github.com/go-kit/kit/log"
-	"github.com/longjoy/micro-go-book/common/discover"
-	"github.com/longjoy/micro-go-book/common/loadbalance"
 	"log"
+	"micro-go-book/common/discover"
+	"micro-go-book/common/loadbalance"
 	"net/http"
 	"os"
 	"os/signal"
@@ -29,8 +29,6 @@ func main() {
 		logger = kitlog.With(logger, "ts", kitlog.DefaultTimestampUTC)
 		logger = kitlog.With(logger, "caller", kitlog.DefaultCaller)
 	}
-
-
 
 	consulClient, err := discover.NewKitDiscoverClient(*consulHost, *consulPort)
 

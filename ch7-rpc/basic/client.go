@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch7-rpc/basic/string-service"
 	"log"
+	"micro-go-book/ch7-rpc/basic/string-service"
 	"net/rpc"
 )
 

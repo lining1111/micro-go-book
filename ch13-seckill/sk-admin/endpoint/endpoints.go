@@ -5,9 +5,9 @@ import (
 	"errors"
 	"github.com/go-kit/kit/endpoint"
 	"github.com/gohouse/gorose/v2"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-admin/model"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-admin/service"
 	"log"
+	"micro-go-book/ch13-seckill/sk-admin/model"
+	"micro-go-book/ch13-seckill/sk-admin/service"
 )
 
 // CalculateEndpoint define endpoint

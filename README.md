@@ -17,3 +17,7 @@ go mod tidy
 ```
 ### Q&A
 如有问题，可在 [链接](https://github.com/longjoy/micro-go-book) 提出 issue。
+
+### 个人修改
+
+    Go版本基于 1.18.1

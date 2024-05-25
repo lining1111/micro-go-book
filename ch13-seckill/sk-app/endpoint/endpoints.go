@@ -3,8 +3,8 @@ package endpoint
 import (
 	"context"
 	"github.com/go-kit/kit/endpoint"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-app/model"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-app/service"
+	"micro-go-book/ch13-seckill/sk-app/model"
+	"micro-go-book/ch13-seckill/sk-app/service"
 )
 
 // CalculateEndpoint define endpoint

@@ -2,8 +2,8 @@ package service
 
 import (
 	"context"
-	"github.com/longjoy/micro-go-book/ch13-seckill/user-service/model"
 	"log"
+	"micro-go-book/ch13-seckill/user-service/model"
 )
 
 // Service Define a service interface

@@ -3,9 +3,9 @@ package string_service
 import (
 	"context"
 	"errors"
-	"github.com/longjoy/micro-go-book/ch7-rpc/stream-pb"
 	"io"
 	"log"
+	"micro-go-book/ch7-rpc/stream-pb"
 	"strings"
 )
 

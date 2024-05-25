@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch7-rpc/stream-pb"
 	"google.golang.org/grpc"
 	"io"
 	"log"
+	"micro-go-book/ch7-rpc/stream-pb"
 	"strconv"
 )
 

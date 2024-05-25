@@ -3,10 +3,10 @@ package client
 import (
 	grpctransport "github.com/go-kit/kit/transport/grpc"
 	kitgrpc "github.com/go-kit/kit/transport/grpc"
-	"github.com/longjoy/micro-go-book/ch12-trace/zipkin-kit/pb"
-	endpts "github.com/longjoy/micro-go-book/ch12-trace/zipkin-kit/string-service/endpoint"
-	"github.com/longjoy/micro-go-book/ch12-trace/zipkin-kit/string-service/service"
 	"google.golang.org/grpc"
+	"micro-go-book/ch12-trace/zipkin-kit/pb"
+	endpts "micro-go-book/ch12-trace/zipkin-kit/string-service/endpoint"
+	"micro-go-book/ch12-trace/zipkin-kit/string-service/service"
 )
 
 func StringDiff(conn *grpc.ClientConn, clientTracer kitgrpc.ClientOption) service.Service {

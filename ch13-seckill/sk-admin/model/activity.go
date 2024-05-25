@@ -2,8 +2,8 @@ package model
 
 import (
 	"github.com/gohouse/gorose/v2"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/mysql"
 	"log"
+	"micro-go-book/ch13-seckill/pkg/mysql"
 )
 
 const (

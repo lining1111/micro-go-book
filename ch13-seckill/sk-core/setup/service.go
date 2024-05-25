@@ -2,8 +2,8 @@ package setup
 
 import (
 	"fmt"
-	register "github.com/longjoy/micro-go-book/ch13-seckill/pkg/discover"
-	"github.com/longjoy/micro-go-book/ch13-seckill/sk-core/service/srv_redis"
+	register "micro-go-book/ch13-seckill/pkg/discover"
+	"micro-go-book/ch13-seckill/sk-core/service/srv_redis"
 	"os"
 	"os/signal"
 	"syscall"

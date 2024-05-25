@@ -1,10 +1,11 @@
+//go:build go1.7
 // +build go1.7
 
 package main
 
 import (
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch12-trace/zipkin-go/string-services/svc2"
+	"micro-go-book/ch12-trace/zipkin-go/string-services/svc2"
 	"net/http"
 	"os"
 

@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/go-kit/kit/endpoint"
-	"github.com/longjoy/micro-go-book/ch7-rpc/pb"
+	"micro-go-book/ch7-rpc/pb"
 	"strings"
 )
 

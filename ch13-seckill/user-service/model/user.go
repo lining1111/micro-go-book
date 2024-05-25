@@ -2,15 +2,15 @@ package model
 
 import (
 	"github.com/gohouse/gorose/v2"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/mysql"
 	"log"
+	"micro-go-book/ch13-seckill/pkg/mysql"
 )
 
 type User struct {
-	UserId     int64    `json:"user_id"`     //Id
-	UserName   string `json:"user_name"`   //用户名称
-	Password   string `json:"password"`    //密码
-	Age        int    `json:"age"`         //年龄
+	UserId   int64  `json:"user_id"`   //Id
+	UserName string `json:"user_name"` //用户名称
+	Password string `json:"password"`  //密码
+	Age      int    `json:"age"`       //年龄
 
 }
 
@@ -54,26 +54,21 @@ func (p *UserModel) CheckUser(username string, password string) (*User, error) {
 		return nil, err
 	}
 	user := &User{
-		UserId:data["user_id"].(int64),
-		UserName:data["user_name"].(string),
-		Password:data["password"].(string),
-		Age:int(data["age"].(int64)),
-
-
+		UserId:   data["user_id"].(int64),
+		UserName: data["user_name"].(string),
+		Password: data["password"].(string),
+		Age:      int(data["age"].(int64)),
 	}
 	return user, nil
 }
 
-
-
 func (p *UserModel) CreateUser(user *User) error {
 	conn := mysql.DB()
 	_, err := conn.Table(p.getTableName()).Data(map[string]interface{}{
-		"user_id":     user.UserId,
-		"user_name":   user.UserName,
-		"password":    user.Password,
-		"age":         user.Age,
-
+		"user_id":   user.UserId,
+		"user_name": user.UserName,
+		"password":  user.Password,
+		"age":       user.Age,
 	}).Insert()
 	if err != nil {
 		log.Printf("Error : %v", err)

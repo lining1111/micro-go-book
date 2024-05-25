@@ -2,8 +2,8 @@ package loadbalance
 
 import (
 	"errors"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/common"
 	"math/rand"
+	"micro-go-book/ch13-seckill/pkg/common"
 )
 
 // 负载均衡器

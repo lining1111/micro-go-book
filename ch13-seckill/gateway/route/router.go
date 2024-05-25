@@ -6,13 +6,13 @@ import (
 	"fmt"
 	"github.com/afex/hystrix-go/hystrix"
 	"github.com/go-kit/kit/log"
-	"github.com/longjoy/micro-go-book/ch13-seckill/gateway/config"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pb"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/client"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/discover"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/loadbalance"
 	"github.com/openzipkin/zipkin-go"
 	zipkinhttpsvr "github.com/openzipkin/zipkin-go/middleware/http"
+	"micro-go-book/ch13-seckill/gateway/config"
+	"micro-go-book/ch13-seckill/pb"
+	"micro-go-book/ch13-seckill/pkg/client"
+	"micro-go-book/ch13-seckill/pkg/discover"
+	"micro-go-book/ch13-seckill/pkg/loadbalance"
 	"net/http"
 	"net/http/httputil"
 	"strings"
@@ -56,11 +56,9 @@ func preFilter(r *http.Request) bool {
 	}
 	oauthClient, _ := client.NewOAuthClient("oauth", nil, nil)
 
-
 	resp, remoteErr := oauthClient.CheckToken(context.Background(), nil, &pb.CheckTokenRequest{
 		Token: authToken,
 	})
-
 
 	if remoteErr != nil || resp == nil {
 		return false
@@ -83,7 +81,6 @@ func (router HystrixRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-
 	var err error
 	if reqPath == "" || !preFilter(r) {
 		err = errors.New("illegal request!")
@@ -91,9 +88,6 @@ func (router HystrixRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(err.Error()))
 		return
 	}
-
-
-
 
 	//按照分隔符'/'对路径进行分解，获取服务名称serviceName
 	pathArray := strings.Split(reqPath, "/")

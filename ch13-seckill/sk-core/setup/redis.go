@@ -2,8 +2,8 @@ package setup
 
 import (
 	"github.com/go-redis/redis"
-	conf "github.com/longjoy/micro-go-book/ch13-seckill/pkg/config"
 	"log"
+	conf "micro-go-book/ch13-seckill/pkg/config"
 )
 
 //初始化redis

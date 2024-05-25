@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch7-rpc/pb"
 	"google.golang.org/grpc"
+	"micro-go-book/ch7-rpc/pb"
 )
 
 func main() {

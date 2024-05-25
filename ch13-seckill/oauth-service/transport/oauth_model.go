@@ -2,9 +2,9 @@ package transport
 
 import (
 	"context"
-	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/endpoint"
-	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/model"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pb"
+	"micro-go-book/ch13-seckill/oauth-service/endpoint"
+	"micro-go-book/ch13-seckill/oauth-service/model"
+	"micro-go-book/ch13-seckill/pb"
 )
 
 func EncodeGRPCCheckTokenRequest(_ context.Context, r interface{}) (interface{}, error) {

@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch8-config/conf"
 	"github.com/spf13/viper"
 	"log"
+	"micro-go-book/ch8-config/conf"
 	"net/http"
 )
 
@@ -16,4 +16,3 @@ func main() {
 	})
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
-

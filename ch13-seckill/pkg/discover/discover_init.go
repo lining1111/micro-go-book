@@ -3,11 +3,11 @@ package discover
 import (
 	"errors"
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/bootstrap"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/common"
-	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/loadbalance"
 	uuid "github.com/satori/go.uuid"
 	"log"
+	"micro-go-book/ch13-seckill/pkg/bootstrap"
+	"micro-go-book/ch13-seckill/pkg/common"
+	"micro-go-book/ch13-seckill/pkg/loadbalance"
 	"net/http"
 	"os"
 )
@@ -15,7 +15,7 @@ import (
 var ConsulService DiscoveryClient
 var LoadBalance loadbalance.LoadBalance
 var Logger *log.Logger
-var NoInstanceExistedErr  = errors.New("no available client")
+var NoInstanceExistedErr = errors.New("no available client")
 
 func init() {
 	// 1.实例化一个 Consul 客户端，此处实例化了原生态实现版本

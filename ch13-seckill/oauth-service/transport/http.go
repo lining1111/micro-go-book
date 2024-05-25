@@ -9,23 +9,22 @@ import (
 	"github.com/go-kit/kit/transport"
 	kithttp "github.com/go-kit/kit/transport/http"
 	"github.com/gorilla/mux"
-	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/endpoint"
-	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/service"
 	gozipkin "github.com/openzipkin/zipkin-go"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"micro-go-book/ch13-seckill/oauth-service/endpoint"
+	"micro-go-book/ch13-seckill/oauth-service/service"
 	"net/http"
 )
 
 var (
-	ErrorBadRequest = errors.New("invalid request parameter")
-	ErrorGrantTypeRequest = errors.New("invalid request grant type")
-	ErrorTokenRequest = errors.New("invalid request token")
+	ErrorBadRequest         = errors.New("invalid request parameter")
+	ErrorGrantTypeRequest   = errors.New("invalid request grant type")
+	ErrorTokenRequest       = errors.New("invalid request token")
 	ErrInvalidClientRequest = errors.New("invalid client message")
-
 )
 
 // MakeHttpHandler make http handler use mux
-func MakeHttpHandler(ctx context.Context, endpoints endpoint.OAuth2Endpoints, tokenService service.TokenService, clientService service.ClientDetailsService,zipkinTracer *gozipkin.Tracer, logger log.Logger) http.Handler {
+func MakeHttpHandler(ctx context.Context, endpoints endpoint.OAuth2Endpoints, tokenService service.TokenService, clientService service.ClientDetailsService, zipkinTracer *gozipkin.Tracer, logger log.Logger) http.Handler {
 	r := mux.NewRouter()
 	zipkinServer := zipkin.HTTPServerTrace(zipkinTracer, zipkin.Name("http-transport"))
 
@@ -36,14 +35,12 @@ func MakeHttpHandler(ctx context.Context, endpoints endpoint.OAuth2Endpoints, to
 	}
 	r.Path("/metrics").Handler(promhttp.Handler())
 
-
 	clientAuthorizationOptions := []kithttp.ServerOption{
 		kithttp.ServerBefore(makeClientAuthorizationContext(clientService, logger)),
 		kithttp.ServerErrorHandler(transport.NewLogErrorHandler(logger)),
 		kithttp.ServerErrorEncoder(encodeError),
 		zipkinServer,
 	}
-
 
 	r.Methods("POST").Path("/oauth/token").Handler(kithttp.NewServer(
 		endpoints.TokenEndpoint,
@@ -59,7 +56,6 @@ func MakeHttpHandler(ctx context.Context, endpoints endpoint.OAuth2Endpoints, to
 		clientAuthorizationOptions...,
 	))
 
-
 	// create health check handler
 	r.Methods("GET").Path("/health").Handler(kithttp.NewServer(
 		endpoints.HealthCheckEndpoint,
@@ -70,7 +66,6 @@ func MakeHttpHandler(ctx context.Context, endpoints endpoint.OAuth2Endpoints, to
 
 	return r
 }
-
 
 func makeClientAuthorizationContext(clientDetailsService service.ClientDetailsService, logger log.Logger) kithttp.RequestFunc {
 
@@ -86,32 +81,29 @@ func makeClientAuthorizationContext(clientDetailsService service.ClientDetailsSe
 	}
 }
 
-
 func decodeTokenRequest(ctx context.Context, r *http.Request) (interface{}, error) {
 	grantType := r.URL.Query().Get("grant_type")
-	if grantType == ""{
+	if grantType == "" {
 		return nil, ErrorGrantTypeRequest
 	}
 	return &endpoint.TokenRequest{
-		GrantType:grantType,
-		Reader:r,
+		GrantType: grantType,
+		Reader:    r,
 	}, nil
 
 }
 
 func decodeCheckTokenRequest(ctx context.Context, r *http.Request) (interface{}, error) {
 	tokenValue := r.URL.Query().Get("token")
-	if tokenValue == ""{
+	if tokenValue == "" {
 		return nil, ErrorTokenRequest
 	}
 
 	return &endpoint.CheckTokenRequest{
-		Token:tokenValue,
+		Token: tokenValue,
 	}, nil
 
 }
-
-
 
 // encode errors from business-logic
 func encodeError(_ context.Context, err error, w http.ResponseWriter) {
@@ -125,12 +117,10 @@ func encodeError(_ context.Context, err error, w http.ResponseWriter) {
 	})
 }
 
-
 func encodeJsonResponse(ctx context.Context, w http.ResponseWriter, response interface{}) error {
 	w.Header().Set("Content-Type", "application/json;charset=utf-8")
 	return json.NewEncoder(w).Encode(response)
 }
-
 
 // decodeHealthCheckRequest decode request
 func decodeHealthCheckRequest(ctx context.Context, r *http.Request) (interface{}, error) {
