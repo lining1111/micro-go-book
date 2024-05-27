@@ -1,6 +1,6 @@
 package model
 
-
+// 客户端信息
 type ClientDetails struct {
 	// client 的标识
 	ClientId string

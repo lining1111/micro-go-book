@@ -58,6 +58,7 @@ func NewUsernamePasswordTokenGranter(grantType string, userDetailsService UserDe
 	}
 }
 
+//根据请求的用户名密码生成访问令牌
 func (tokenGranter *UsernamePasswordTokenGranter) Grant(ctx context.Context,
 	grantType string, client *ClientDetails, reader *http.Request) (*OAuth2Token, error) {
 	if grantType != tokenGranter.supportGrantType {
@@ -127,8 +128,8 @@ type TokenService interface {
 }
 
 type DefaultTokenService struct {
-	tokenStore    TokenStore
-	tokenEnhancer TokenEnhancer
+	tokenStore    TokenStore    //存储token的接口集合
+	tokenEnhancer TokenEnhancer //token增强器
 }
 
 func NewTokenService(tokenStore TokenStore, tokenEnhancer TokenEnhancer) TokenService {
@@ -177,6 +178,7 @@ func (tokenService *DefaultTokenService) CreateAccessToken(oauth2Details *OAuth2
 
 func (tokenService *DefaultTokenService) createAccessToken(refreshToken *OAuth2Token, oauth2Details *OAuth2Details) (*OAuth2Token, error) {
 
+	//根据客户端信息计算有效时间
 	validitySeconds := oauth2Details.Client.AccessTokenValiditySeconds
 	s, _ := time.ParseDuration(strconv.Itoa(validitySeconds) + "s")
 	expiredTime := time.Now().Add(s)
@@ -349,6 +351,7 @@ type TokenEnhancer interface {
 	Extract(tokenValue string) (*OAuth2Token, *OAuth2Details, error)
 }
 
+//token 具体的内容，base64之前的
 type OAuth2TokenCustomClaims struct {
 	UserDetails   UserDetails
 	ClientDetails ClientDetails
@@ -396,6 +399,7 @@ func (enhancer *JwtTokenEnhancer) Extract(tokenValue string) (*OAuth2Token, *OAu
 
 }
 
+//这里是生成token的主要内容
 func (enhancer *JwtTokenEnhancer) sign(oauth2Token *OAuth2Token, oauth2Details *OAuth2Details) (*OAuth2Token, error) {
 
 	expireTime := oauth2Token.ExpiresTime

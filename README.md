@@ -30,3 +30,13 @@ go mod tidy
 
     本书如果不以微服务的结构来做的话，可以从单例服务的角度，从go-kit出发，学习服务的分层处理
     
+### go-kit
+
+    go-kit是一个分布式的开发工具集，属于微服务体系
+    go-kit与MVC一样，也是三层架构，分别是：
+    transport：处于微服务的最上层，负责解析请求，调用endpoint处理请求
+            定义路由，定义解码和编码器
+    endpoint：属于客户端和服务端的转接器，链接servive层，将service的结果转换为请求需要的格式
+            内部定义了请求和响应的格式
+            每个makeXXXEndpoint方法返回一个endpoint，接受请求，调用service处理请求，返回结果
+    service：业务逻辑

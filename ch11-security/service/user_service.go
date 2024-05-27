@@ -22,6 +22,7 @@ type InMemoryUserDetailsService struct {
 	userDetailsDict map[string]*model.UserDetails
 }
 
+// 从内存获取用户信息(实际使用中应该从数据库、缓存或者其他微服务中获取)
 func (service *InMemoryUserDetailsService) GetUserDetailByUsername(ctx context.Context, username, password string) (*model.UserDetails, error) {
 
 	// 根据 username 获取用户信息
@@ -39,6 +40,7 @@ func (service *InMemoryUserDetailsService) GetUserDetailByUsername(ctx context.C
 
 }
 
+//建立用户信息列表，主要是返回 userDetailsDict
 func NewInMemoryUserDetailsService(userDetailsList []*model.UserDetails) *InMemoryUserDetailsService {
 	userDetailsDict := make(map[string]*model.UserDetails)
 
