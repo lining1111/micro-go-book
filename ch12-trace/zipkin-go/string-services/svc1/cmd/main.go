@@ -1,5 +1,5 @@
-//go:build go1.7
-// +build go1.7
+//go:build go1.18
+// +build go1.18
 
 package main
 
@@ -25,7 +25,7 @@ const (
 	hostPort = "127.0.0.1:61001"
 
 	// Endpoint to send Zipkin spans to.
-	zipkinHTTPEndpoint = "http://114.67.98.210:9411/api/v1/spans"
+	zipkinHTTPEndpoint = "http://127.0.0.1/api/v1/spans"
 
 	// Debug mode.
 	debug = false

@@ -1,4 +1,5 @@
-// +build go1.7
+//go:build go1.18
+// +build go1.18
 
 package svc2
 
