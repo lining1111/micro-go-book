@@ -33,10 +33,30 @@ go mod tidy
 ### go-kit
 
     go-kit是一个分布式的开发工具集，属于微服务体系
+    从 github.com/go-kit/kit/transport/http/server.go 入手
+        type Server struct {
+            e            endpoint.Endpoint
+            dec          DecodeRequestFunc
+            enc          EncodeResponseFunc
+            before       []RequestFunc
+            after        []ServerResponseFunc
+            errorEncoder ErrorEncoder
+            finalizer    []ServerFinalizerFunc
+            errorHandler transport.ErrorHandler
+        }
+    
+        和函数
+        func (s Server) ServeHTTP(w http.ResponseWriter, r *http.Request)
+        
+        分析go-kit的层级间的调用
+
     go-kit与MVC一样，也是三层架构，分别是：
-    transport：处于微服务的最上层，负责解析请求，调用endpoint处理请求
-            定义路由，定义解码和编码器
-    endpoint：属于客户端和服务端的转接器，链接servive层，将service的结果转换为请求需要的格式
-            内部定义了请求和响应的格式
+    transport：处于微服务的最上层，
+            定义路由，定义解码和编码器代码，链接endpoint层
+            规定了从接收请求到响应的全流程
+    endpoint：从解码器接收输入 链接servive层，调用方法，将结果输出到编码器
             每个makeXXXEndpoint方法返回一个endpoint，接受请求，调用service处理请求，返回结果
     service：业务逻辑
+            方法入参为解码器输出，出参为编码器输入
+    model: 数据模型
+        定义了请求和响应的格式
